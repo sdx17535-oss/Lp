@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth snap-y snap-mandatory">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Once Human | Official Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-yellow': '#CCFF00',
+                        'alien-purple': '#4B0082',
+                        'deep-purple': '#050505',
+                        'brand-red': '#FF0000',
+                        'nav-bg': 'rgba(0, 0, 0, 0.85)',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'Roboto', 'sans-serif'],
+                        'futuristic': ['Orbitron', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@300;400;600;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module">
+        import { animate, scroll, stagger, inView } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm";
+        window.motion = { animate, scroll, stagger, inView };
+    </script>
+    <style>
+        body {
+            background-color: #000;
+            color: white;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .section-snap {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .glitch-text {
+            position: relative;
+            text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                         -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+                         0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+            animation: glitch 500ms infinite;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em 0.05em 0 rgba(0, 0, 255, 0.75); }
+            14% { text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em 0.05em 0 rgba(0, 255, 0, 0.75); }
+            15% { text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75); }
+            49% { text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75); }
+            50% { text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75); }
+            99% { text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75); }
+            100% { text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em -0.05em 0 rgba(0, 0, 255, 0.75); }
+        }
+        .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+        .feature-card {
+            flex: 0 0 350px;
+            height: 500px;
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(204, 255, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            border-color: #CCFF00;
+            transform: translateY(-5px);
+            background: rgba(20, 20, 20, 0.8);
+        }
+        .feature-card video {
+            width: 100%;
+            height: 55%;
+            object-fit: cover;
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+            50% { box-shadow: 0 0 45px rgba(255, 0, 0, 0.9), 0 0 20px #CCFF00; }
+            100% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+        }
+        @keyframes shine {
+            0% { transform: translateX(-150%) skewX(-30deg); }
+            100% { transform: translateX(250%) skewX(-30deg); }
+        }
+        .cta-btn-primary {
+            position: relative;
+            overflow: hidden;
+            background-color: #FF0000;
+            color: white;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cta-btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-30deg);
+            pointer-events: none;
+        }
+        .cta-btn-primary:hover::before {
+            animation: shine 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cta-btn-primary:hover {
+            background-color: #ff0000;
+            animation: pulse-glow 1s infinite;
+            transform: scale(1.08);
+            color: #CCFF00;
+            border-color: #CCFF00;
+            text-shadow: 0 0 10px #CCFF00;
+            box-shadow: 0 0 30px #FF0000;
+        }
+        .stardust-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/11.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .showcase-frame {
+            border: 2px solid rgba(204, 255, 0, 0.2);
+            position: relative;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .showcase-frame::before {
+            content: '';
+            position: absolute;
+            top: -5px; left: -5px; width: 20px; height: 20px;
+            border-top: 2px solid #CCFF00; border-left: 2px solid #CCFF00;
+        }
+        .showcase-frame::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; right: -5px; width: 20px; height: 20px;
+            border-bottom: 2px solid #CCFF00; border-right: 2px solid #CCFF00;
+        }
+
+        /* Exit-Intent Pop-up Styles */
+        #exit-popup-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 20000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        #exit-popup-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .popup-frame {
+            position: relative;
+            background: #0a0a0a;
+            border: 2px solid #CCFF00;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(204, 255, 0, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #exit-popup-overlay.active .popup-frame {
+            transform: scale(1);
+        }
+        .popup-noise {
+            position: absolute;
+            inset: 0;
+            background: url('https://www.transparenttextures.com/patterns/black-linen.png');
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #CCFF00;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .popup-close:hover {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+    <!-- Exit-Intent Pop-up -->
+    <div id="exit-popup-overlay">
+        <div class="popup-frame">
+            <div class="popup-noise"></div>
+            <div class="popup-close" onclick="closePopup()">×</div>
+            
+            <div class="text-4xl mb-6">⚠️</div>
+            
+            <h2 class="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tighter">
+                WAIT, META-HUMAN!<br>THE WILDERNESS IS CALLING.
+            </h2>
+            
+            <p class="text-xs md:text-sm text-gray-400 mb-8 leading-relaxed uppercase tracking-wider font-medium">
+                Leaving now means certain death. The Starfall has begun—will you evolve or perish with the old world?
+            </p>
+            
+            <button class="cta-btn-primary w-full py-5 text-sm tracking-[0.3em] mb-6">
+                CLAIM YOUR SURVIVAL KIT
+            </button>
+            
+            <a href="javascript:void(0)" onclick="closePopup()" class="text-[10px] text-gray-500 hover:text-white uppercase tracking-[0.2em] transition-colors">
+                No, I'll take my chances
+            </a>
+        </div>
+    </div>
+
+    <!-- Transparent Floating Navigation -->
+    <nav class="absolute top-0 left-0 w-full z-[100] px-8 md:px-12 py-8 flex justify-end items-center bg-transparent">
+        <div class="flex items-center gap-10">
+            <div class="hidden md:flex gap-8 text-[11px] font-bold tracking-[0.2em] text-white/80 uppercase">
+                <a href="#hero" class="hover:text-neon-yellow transition-colors duration-300">Home</a>
+                <a href="#features" class="hover:text-neon-yellow transition-colors duration-300">Features</a>
+                <a href="#showcase" class="hover:text-neon-yellow transition-colors duration-300">Showcase</a>
+            </div>
+            <button class="cta-btn-primary px-8 py-3 text-[11px]">
+                PLAY NOW
+            </button>
+        </div>
+    </nav>
+
+    <!-- Section 1: Hero Section -->
+    <section id="hero" class="section-snap h-screen flex flex-col justify-end items-center pb-20 relative overflow-hidden">
+        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-10">
+            <source src="assets/1.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-black/30 -z-10"></div>
+        
+        <div class="z-10 text-center max-w-4xl px-6">
+            <h1 class="text-2xl md:text-4xl font-black text-[#CCFF00] tracking-[-0.02em] leading-tight uppercase italic mb-4">
+                THE WORLD HAS CHANGED. WILL YOU EVOLVE?
+            </h1>
+            <p class="text-[10px] md:text-xs font-medium text-gray-100 max-w-lg mx-auto leading-relaxed mb-8 opacity-90 tracking-wide uppercase">
+                A massive open-world survival experience. Join 10M+ survivors in the ultimate trial of humanity.
+            </p>
+            <button id="hero-cta" class="cta-btn-primary px-10 py-4 text-xs tracking-[0.2em]">
+                PLAY PC NOW
+            </button>
+        </div>
+    </section>
+
+    <!-- Section 2: Game Features -->
+    <section id="features" class="section-snap h-screen py-32 stardust-bg flex flex-col justify-center -mt-[1px]">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="mb-16">
+                <h3 class="text-2xl md:text-4xl font-black text-white flex items-center gap-6 border-l-[8px] border-neon-yellow pl-8 uppercase">
+                    GAME FEATURES
+                </h3>
+            </div>
+            
+            <div id="carousel-container" class="carousel-container overflow-hidden">
+                <div id="carousel-track" class="flex gap-6 p-2">
+                    <!-- Feature 1 -->
+                    <div class="feature-card">
+                        <video autoplay muted loop playsinline><source src="assets/2.mp4" type="video/mp4"></video>
+                        <div class="p-6 space-y-3">
+                            <h4 class="text-lg font-bold text-neon-yellow uppercase tracking-tighter">Supernatural Survival</h4>
+                            <p class="text-[11px] text-gray-300 leading-relaxed font-light">Battle against hunger, thirst, and the creeping insanity in a world transformed by Stardust.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="feature-card">
+                        <video autoplay muted loop playsinline><source src="assets/3.mp4" type="video/mp4"></video>
+                        <div class="p-6 space-y-3">
+                            <h4 class="text-lg font-bold text-neon-yellow uppercase tracking-tighter">Build & Relocate</h4>
+                            <p class="text-[11px] text-gray-300 leading-relaxed font-light">Design your sanctuary from the ground up. Fortify your base or build a peaceful cottage.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="feature-card">
+                        <video autoplay muted loop playsinline><source src="assets/4.mp4" type="video/mp4"></video>
+                        <div class="p-6 space-y-3">
+                            <h4 class="text-lg font-bold text-neon-yellow uppercase tracking-tighter">Massive Bosses</h4>
+                            <p class="text-[11px] text-gray-300 leading-relaxed font-light">Face colossal Entities that defy logic and test your ultimate survival skills.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 4 -->
+                    <div class="feature-card">
+                        <video autoplay muted loop playsinline><source src="assets/5.mp4" type="video/mp4"></video>
+                        <div class="p-6 space-y-3">
+                            <h4 class="text-lg font-bold text-neon-yellow uppercase tracking-tighter">Deviations</h4>
+                            <p class="text-[11px] text-gray-300 leading-relaxed font-light">Capture mysterious entities to enhance your combat and resource capabilities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Game Showcase -->
+    <section id="showcase" class="section-snap h-screen relative -mt-[1px] overflow-hidden">
+        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-[1]">
+            <source src="assets/7.mp4" type="video/mp4">
+        </video>
+    </section>
+
+    <!-- Section 4: System Requirements -->
+    <section id="requirements" class="section-snap h-screen flex flex-col items-center justify-center relative -mt-[1px] px-6" style="background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('assets/background17.png'); background-size: cover; background-position: center;">
+        <div class="z-10 text-center mb-12">
+            <h3 class="text-3xl md:text-5xl font-black text-white inline-block border-l-[12px] border-neon-yellow pl-8 text-left drop-shadow-[0_0_20px_rgba(204,255,0,0.3)] uppercase tracking-tight">
+                System Requirements
+            </h3>
+        </div>
+
+        <div class="z-10 w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-md p-8 md:p-12 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 w-1 h-full bg-neon-yellow"></div>
+            
+            <h4 class="text-neon-yellow font-black text-xl md:text-2xl mb-8 flex items-center gap-3 tracking-tighter uppercase">
+                <span>⚙️</span> MINIMUM REQUIREMENTS
+            </h4>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-left">
+                <div class="space-y-1">
+                    <p class="text-neon-yellow text-[10px] font-bold tracking-widest uppercase">OS</p>
+                    <p class="text-white text-sm font-medium">Windows 10 / 11 (64-bit)</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-neon-yellow text-[10px] font-bold tracking-widest uppercase">Processor</p>
+                    <p class="text-white text-sm font-medium">Intel Core i5 or AMD equivalent</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-neon-yellow text-[10px] font-bold tracking-widest uppercase">Memory</p>
+                    <p class="text-white text-sm font-medium">8 GB RAM</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-neon-yellow text-[10px] font-bold tracking-widest uppercase">Graphics</p>
+                    <p class="text-white text-sm font-medium">NVIDIA GTX 1060 or equivalent</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-neon-yellow text-[10px] font-bold tracking-widest uppercase">Storage</p>
+                    <p class="text-white text-sm font-medium">40 GB available space</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-neon-yellow text-[10px] font-bold tracking-widest uppercase">Network</p>
+                    <p class="text-white text-sm font-medium">Broadband Internet connection</p>
+                </div>
+            </div>
+
+            <div class="mt-10 pt-8 border-t border-white/10 flex justify-between items-center">
+                <div class="bg-neon-yellow/10 border border-neon-yellow/20 px-4 py-2 rounded-sm">
+                    <p class="text-neon-yellow text-[10px] font-black tracking-widest uppercase">Windows PC Only</p>
+                </div>
+                <div class="opacity-20">
+                    <span class="text-white text-[10px] font-bold tracking-[0.5em] uppercase">SYSTEM_CHECK // PASSED</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Final Section -->
+    <section id="final-cta" class="section-snap h-screen flex flex-col items-center justify-end pb-32 text-center px-6 bg-black -mt-[1px] relative">
+        <video autoplay muted loop playsinline class="video-bg">
+            <source src="assets/7.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-black/20"></div>
+        
+        <div class="z-10 space-y-8">
+            <h2 class="text-5xl md:text-8xl font-black tracking-tighter leading-none italic uppercase drop-shadow-[0_0_20px_rgba(204,255,0,0.3)]">
+                YOUR SURVIVAL<br><span class="text-neon-yellow">STARTS HERE!</span>
+            </h2>
+            <p class="text-[11px] md:text-sm text-gray-200 max-w-lg mx-auto leading-relaxed uppercase tracking-[0.3em] opacity-90">
+                Download Once Human and claim your place in a chaotic world!
+            </p>
+            <button class="cta-btn-primary px-14 py-6 text-sm tracking-[0.3em] shadow-[0_0_20px_rgba(255,0,0,0.3)]">
+                PLAY PC NOW
+            </button>
+            <div class="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-4 text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-white/90">
+                <div class="flex items-center gap-2">
+                    <span class="text-neon-yellow text-lg leading-none">✓</span>
+                    <span class="font-sans">Windows Only</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-neon-yellow text-lg leading-none">✓</span>
+                    <span class="font-sans">No Subscription Required</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-neon-yellow text-lg leading-none">✓</span>
+                    <span class="font-sans">Free to Play</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module">
+        const { animate, scroll, stagger, inView } = window.motion;
+
+        const track = document.getElementById('carousel-track');
+        const container = document.getElementById('carousel-container');
+        container.addEventListener('mousemove', (e) => {
+            const { clientX } = e;
+            const { left, width } = container.getBoundingClientRect();
+            const percentage = (clientX - left) / width;
+            const maxScroll = track.scrollWidth - width;
+            animate(track, { x: -percentage * maxScroll }, { type: "spring", stiffness: 60, damping: 25 });
+        });
+
+        inView(".feature-card", ({ target }) => {
+            animate(target, { opacity: [0, 1], scale: [0.95, 1], y: [30, 0] }, { delay: stagger(0.1), duration: 0.8 });
+        });
+
+        const videos = document.querySelectorAll('video');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.play().catch(() => {});
+                } else {
+                    entry.target.pause();
+                }
+            });
+        }, { threshold: 0.2 });
+        videos.forEach(video => observer.observe(video));
+
+        // Exit-Intent Pop-up Logic
+        let popupShown = false;
+        const popup = document.getElementById('exit-popup-overlay');
+
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !popupShown) {
+                showPopup();
+            }
+        });
+
+        window.showPopup = () => {
+            popup.classList.add('active');
+            popupShown = true;
+        };
+
+        window.closePopup = () => {
+            popup.classList.remove('active');
+        };
+    </script>
+</body>
+</html>
