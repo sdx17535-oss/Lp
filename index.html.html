@@ -159,45 +159,6 @@
             border-bottom: 2px solid #CCFF00; border-right: 2px solid #CCFF00;
         }
 
-        /* Alien Energy Animation */
-        @keyframes alien-energy {
-            0% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(45deg); }
-            100% { filter: hue-rotate(0deg); }
-        }
-        .alien-border {
-            animation: alien-energy 4s infinite ease-in-out;
-        }
-
-        /* Persistent Sticky CTA */
-        .sticky-cta {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            background-color: #FF0000;
-            color: white;
-            padding: 1.2rem 4rem;
-            border-radius: 9999px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 14px;
-            white-space: nowrap;
-            min-width: 280px;
-        }
-        .sticky-cta:hover {
-            transform: translateX(-50%) scale(1.05);
-            box-shadow: 0 0 40px rgba(255, 0, 0, 0.9), 0 0 15px #CCFF00;
-            color: #CCFF00;
-            border-color: #CCFF00;
-        }
-
         /* Exit-Intent Pop-up Styles */
         #exit-popup-overlay {
             display: none;
@@ -253,11 +214,6 @@
 </head>
 <body class="bg-black">
 
-    <!-- Persistent Sticky CTA -->
-    <a href="https://to.wendiro.com/u?k=24c3cf9a5dde4dd896352d1314e9aacd&via=23417" target="_blank" rel="noopener noreferrer" class="sticky-cta" aria-label="Download Once Human for Free">
-        DOWNLOAD FREE
-    </a>
-
     <!-- Exit-Intent Pop-up -->
     <div id="exit-popup-overlay">
         <div class="popup-frame">
@@ -274,47 +230,47 @@
                 Leaving now means certain death. The Starfall has begun—will you evolve or perish with the old world?
             </p>
             
-            <a href="https://to.wendiro.com/u?k=24c3cf9a5dde4dd896352d1314e9aacd&via=23417" target="_blank" rel="noopener noreferrer" class="cta-btn-primary w-full py-5 text-sm tracking-[0.3em] mb-6" aria-label="Claim your Survival Kit">
+            <button class="cta-btn-primary w-full py-5 text-sm tracking-[0.3em] mb-6">
                 CLAIM YOUR SURVIVAL KIT
-            </a>
+            </button>
             
-            <a href="javascript:void(0)" onclick="closePopup()" class="text-[10px] text-gray-500 hover:text-white uppercase tracking-[0.2em] transition-colors" aria-label="Close survival kit popup">
+            <a href="javascript:void(0)" onclick="closePopup()" class="text-[10px] text-gray-500 hover:text-white uppercase tracking-[0.2em] transition-colors">
                 No, I'll take my chances
             </a>
         </div>
     </div>
 
     <!-- Transparent Floating Navigation -->
-    <nav id="main-nav" class="fixed top-0 left-0 w-full z-[100] px-8 md:px-12 py-8 flex justify-end items-center bg-transparent transition-all duration-300">
+    <nav class="absolute top-0 left-0 w-full z-[100] px-8 md:px-12 py-8 flex justify-end items-center bg-transparent">
         <div class="flex items-center gap-10">
             <div class="hidden md:flex gap-8 text-[11px] font-bold tracking-[0.2em] text-white/80 uppercase">
                 <a href="#hero" class="hover:text-neon-yellow transition-colors duration-300">Home</a>
                 <a href="#features" class="hover:text-neon-yellow transition-colors duration-300">Features</a>
                 <a href="#showcase" class="hover:text-neon-yellow transition-colors duration-300">Showcase</a>
             </div>
-            <a href="https://to.wendiro.com/u?k=24c3cf9a5dde4dd896352d1314e9aacd&via=23417" target="_blank" rel="noopener noreferrer" class="cta-btn-primary px-8 py-3 text-[11px]" aria-label="Play Once Human Now">
+            <button class="cta-btn-primary px-8 py-3 text-[11px]">
                 PLAY NOW
-            </a>
+            </button>
         </div>
     </nav>
 
     <!-- Section 1: Hero Section -->
     <section id="hero" class="section-snap h-screen flex flex-col justify-end items-center pb-20 relative overflow-hidden">
-        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-10" poster="assets/11.jpg">
+        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-10">
             <source src="assets/1.mp4" type="video/mp4">
         </video>
         <div class="absolute inset-0 bg-black/30 -z-10"></div>
         
         <div class="z-10 text-center max-w-4xl px-6">
-            <h1 class="text-2xl md:text-4xl font-black text-[#CCFF00] tracking-[-0.02em] leading-tight uppercase italic mb-4" style="text-wrap: balance;">
+            <h1 class="text-2xl md:text-4xl font-black text-[#CCFF00] tracking-[-0.02em] leading-tight uppercase italic mb-4">
                 THE WORLD HAS CHANGED. WILL YOU EVOLVE?
             </h1>
             <p class="text-[10px] md:text-xs font-medium text-gray-100 max-w-lg mx-auto leading-relaxed mb-8 opacity-90 tracking-wide uppercase">
                 A massive open-world survival experience. Join 10M+ survivors in the ultimate trial of humanity.
             </p>
-            <a href="https://to.wendiro.com/u?k=24c3cf9a5dde4dd896352d1314e9aacd&via=23417" target="_blank" rel="noopener noreferrer" id="hero-cta" class="cta-btn-primary px-10 py-4 text-xs tracking-[0.2em]" aria-label="Download Once Human on PC">
+            <button id="hero-cta" class="cta-btn-primary px-10 py-4 text-xs tracking-[0.2em]">
                 PLAY PC NOW
-            </a>
+            </button>
         </div>
     </section>
 
@@ -322,7 +278,7 @@
     <section id="features" class="section-snap h-screen py-32 stardust-bg flex flex-col justify-center -mt-[1px]">
         <div class="container mx-auto px-6 relative z-10">
             <div class="mb-16">
-                <h3 class="text-2xl md:text-4xl font-black text-white flex items-center gap-6 border-l-[8px] border-neon-yellow pl-8 uppercase alien-border">
+                <h3 class="text-2xl md:text-4xl font-black text-white flex items-center gap-6 border-l-[8px] border-neon-yellow pl-8 uppercase">
                     GAME FEATURES
                 </h3>
             </div>
@@ -331,7 +287,7 @@
                 <div id="carousel-track" class="flex gap-6 p-2">
                     <!-- Feature 1 -->
                     <div class="feature-card">
-                        <video autoplay muted loop playsinline poster="assets/11.jpg"><source src="assets/2.mp4" type="video/mp4"></video>
+                        <video autoplay muted loop playsinline><source src="assets/2.mp4" type="video/mp4"></video>
                         <div class="p-6 space-y-3">
                             <h4 class="text-lg font-bold text-neon-yellow uppercase tracking-tighter">Supernatural Survival</h4>
                             <p class="text-[11px] text-gray-300 leading-relaxed font-light">Battle against hunger, thirst, and the creeping insanity in a world transformed by Stardust.</p>
@@ -339,7 +295,7 @@
                     </div>
                     <!-- Feature 2 -->
                     <div class="feature-card">
-                        <video autoplay muted loop playsinline poster="assets/11.jpg"><source src="assets/3.mp4" type="video/mp4"></video>
+                        <video autoplay muted loop playsinline><source src="assets/3.mp4" type="video/mp4"></video>
                         <div class="p-6 space-y-3">
                             <h4 class="text-lg font-bold text-neon-yellow uppercase tracking-tighter">Build & Relocate</h4>
                             <p class="text-[11px] text-gray-300 leading-relaxed font-light">Design your sanctuary from the ground up. Fortify your base or build a peaceful cottage.</p>
@@ -347,7 +303,7 @@
                     </div>
                     <!-- Feature 3 -->
                     <div class="feature-card">
-                        <video autoplay muted loop playsinline poster="assets/11.jpg"><source src="assets/4.mp4" type="video/mp4"></video>
+                        <video autoplay muted loop playsinline><source src="assets/4.mp4" type="video/mp4"></video>
                         <div class="p-6 space-y-3">
                             <h4 class="text-lg font-bold text-neon-yellow uppercase tracking-tighter">Massive Bosses</h4>
                             <p class="text-[11px] text-gray-300 leading-relaxed font-light">Face colossal Entities that defy logic and test your ultimate survival skills.</p>
@@ -355,7 +311,7 @@
                     </div>
                     <!-- Feature 4 -->
                     <div class="feature-card">
-                        <video autoplay muted loop playsinline poster="assets/11.jpg"><source src="assets/5.mp4" type="video/mp4"></video>
+                        <video autoplay muted loop playsinline><source src="assets/5.mp4" type="video/mp4"></video>
                         <div class="p-6 space-y-3">
                             <h4 class="text-lg font-bold text-neon-yellow uppercase tracking-tighter">Deviations</h4>
                             <p class="text-[11px] text-gray-300 leading-relaxed font-light">Capture mysterious entities to enhance your combat and resource capabilities.</p>
@@ -368,7 +324,7 @@
 
     <!-- Section 3: Game Showcase -->
     <section id="showcase" class="section-snap h-screen relative -mt-[1px] overflow-hidden">
-        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-[1]" poster="assets/11.jpg">
+        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-[1]">
             <source src="assets/7.mp4" type="video/mp4">
         </video>
     </section>
@@ -376,13 +332,13 @@
     <!-- Section 4: System Requirements -->
     <section id="requirements" class="section-snap h-screen flex flex-col items-center justify-center relative -mt-[1px] px-6" style="background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('assets/background17.png'); background-size: cover; background-position: center;">
         <div class="z-10 text-center mb-12">
-            <h3 class="text-3xl md:text-5xl font-black text-white inline-block border-l-[12px] border-neon-yellow pl-8 text-left drop-shadow-[0_0_20px_rgba(204,255,0,0.3)] uppercase tracking-tight alien-border">
+            <h3 class="text-3xl md:text-5xl font-black text-white inline-block border-l-[12px] border-neon-yellow pl-8 text-left drop-shadow-[0_0_20px_rgba(204,255,0,0.3)] uppercase tracking-tight">
                 System Requirements
             </h3>
         </div>
 
         <div class="z-10 w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-md p-8 md:p-12 relative overflow-hidden group">
-            <div class="absolute top-0 left-0 w-1 h-full bg-neon-yellow alien-border"></div>
+            <div class="absolute top-0 left-0 w-1 h-full bg-neon-yellow"></div>
             
             <h4 class="text-neon-yellow font-black text-xl md:text-2xl mb-8 flex items-center gap-3 tracking-tighter uppercase">
                 <span>⚙️</span> MINIMUM REQUIREMENTS
@@ -428,7 +384,7 @@
 
     <!-- Section 5: Final Section -->
     <section id="final-cta" class="section-snap h-screen flex flex-col items-center justify-end pb-32 text-center px-6 bg-black -mt-[1px] relative">
-        <video autoplay muted loop playsinline class="video-bg" poster="assets/11.jpg">
+        <video autoplay muted loop playsinline class="video-bg">
             <source src="assets/7.mp4" type="video/mp4">
         </video>
         <div class="absolute inset-0 bg-black/20"></div>
@@ -440,9 +396,9 @@
             <p class="text-[11px] md:text-sm text-gray-200 max-w-lg mx-auto leading-relaxed uppercase tracking-[0.3em] opacity-90">
                 Download Once Human and claim your place in a chaotic world!
             </p>
-            <a href="https://to.wendiro.com/u?k=24c3cf9a5dde4dd896352d1314e9aacd&via=23417" target="_blank" rel="noopener noreferrer" class="cta-btn-primary px-14 py-6 text-sm tracking-[0.3em] shadow-[0_0_20px_rgba(255,0,0,0.3)]" aria-label="Play Once Human Now on PC">
+            <button class="cta-btn-primary px-14 py-6 text-sm tracking-[0.3em] shadow-[0_0_20px_rgba(255,0,0,0.3)]">
                 PLAY PC NOW
-            </a>
+            </button>
             <div class="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-4 text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-white/90">
                 <div class="flex items-center gap-2">
                     <span class="text-neon-yellow text-lg leading-none">✓</span>
@@ -462,21 +418,6 @@
 
     <script type="module">
         const { animate, scroll, stagger, inView } = window.motion;
-
-        // Sticky Header Logic
-        const nav = document.getElementById('main-nav');
-        scroll(({ y }) => {
-            // Header Logic
-            if (y.current > 100) {
-                nav.classList.add('bg-nav-bg', 'backdrop-blur-md');
-                nav.classList.remove('py-8');
-                nav.classList.add('py-4');
-            } else {
-                nav.classList.remove('bg-nav-bg', 'backdrop-blur-md');
-                nav.classList.remove('py-4');
-                nav.classList.add('py-8');
-            }
-        });
 
         const track = document.getElementById('carousel-track');
         const container = document.getElementById('carousel-container');
